@@ -19,9 +19,9 @@ restService.post("/echo", function(req, res) {
     req.body.queryResult.parameters &&
     req.body.queryResult.parameters.echoText
       ? req.body.queryResult.parameters.echoText
-      : "vacio";
-  
-  var speechResponse = {
+      : "";
+  if(speech != ""){  
+    var speechResponse = {
     google: {
       expectUserResponse: true,
       richResponse: {
@@ -34,6 +34,7 @@ restService.post("/echo", function(req, res) {
         ]
       }
     }
+  
   };
   
   return res.json({
@@ -44,6 +45,7 @@ restService.post("/echo", function(req, res) {
     displayText: speech,
     source: "webhook-echo-sample"
   });
+}
 });
 
 restService.post("/audio", function(req, res) {
