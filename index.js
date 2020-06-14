@@ -16,7 +16,7 @@ restService.use(bodyParser.json());
   
   restService.post("/echo", function(req, res) {
 
-    console.log('Dialogflow Request body: ' + JSON.stringify(req.body));
+    console.log('Dialogflow Request body: ' );
   //   var speech =
   //     req.body.queryResult &&
   //     req.body.queryResult.parameters &&
