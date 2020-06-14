@@ -15,37 +15,39 @@ restService.use(bodyParser.json());
 
   
   restService.post("/echo", function(req, res) {
-    var speech =
-      req.body.queryResult &&
-      req.body.queryResult.parameters &&
-      req.body.queryResult.queryResult.outputContexts[1].parameters['Universidad.location']
-        ? req.body.queryResult.queryResult.outputContexts[1].parameters['Universidad.location']
-        : "";
-    if(speech != ""){
-    var speechResponse = {
-      google: {
-        expectUserResponse: true,
-        richResponse: {
-          items: [
-            {
-              simpleResponse: {
-                textToSpeech: speech
-              }
-            }
-          ]
-        }
-      }
-    };
+
+    console.log('Dialogflow Request body: ' + JSON.stringify(req.body));
+  //   var speech =
+  //     req.body.queryResult &&
+  //     req.body.queryResult.parameters &&
+  //     req.body.queryResult.queryResult.outputContexts[0].parameters['Universidad.location']
+  //       ? req.body.queryResult.queryResult.outputContexts[0].parameters['Universidad.location']
+  //       : "";
+  //   if(speech != ""){
+  //   var speechResponse = {
+  //     google: {
+  //       expectUserResponse: true,
+  //       richResponse: {
+  //         items: [
+  //           {
+  //             simpleResponse: {
+  //               textToSpeech: speech
+  //             }
+  //           }
+  //         ]
+  //       }
+  //     }
+  //   };
     
-    return res.json({
-      payload: speechResponse,
-      //data: speechResponse,
-      fulfillmentText: speech,
-      speech: speech,
-      displayText: speech,
-      source: "webhook-echo-sample"
-    });
-  }
+  //   return res.json({
+  //     payload: speechResponse,
+  //     //data: speechResponse,
+  //     fulfillmentText: speech,
+  //     speech: speech,
+  //     displayText: speech,
+  //     source: "webhook-echo-sample"
+  //   });
+  // }
   });
 
 // restService.post("/Universidad", function(req, res) {
