@@ -13,13 +13,38 @@ restService.use(
 
 restService.use(bodyParser.json());
 
-// restService.post("/echo", function(req, res) {
-//   var speech =
-//     req.body.queryResult &&
-//     req.body.queryResult.parameters &&
-//     req.body.queryResult.parameters.echoText
-//       ? req.body.queryResult.parameters.echoText
-//       : "";
+restService.post("/echo", function(req, res) {
+  var speech = req.body.queryResult.outputContext[0].Universidad.location;
+  
+    var speechResponse = {
+    google: {
+      expectUserResponse: true,
+      richResponse: {
+        items: [
+          {
+            simpleResponse: {
+              textToSpeech: speech
+            }
+          }
+        ]
+      }
+    }
+  
+  };
+  
+  return res.json({
+    payload: speechResponse,
+    //data: speechResponse,
+    fulfillmentText: speech,
+    speech: speech,
+    displayText: speech,
+    source: "webhook-echo-sample"
+  });
+
+});
+
+// restService.post("/Universidad", function(req, res) {
+//   var speech = "sasssss";
 //   if(speech != ""){  
 //     var speechResponse = {
 //     google: {
@@ -43,40 +68,10 @@ restService.use(bodyParser.json());
 //     fulfillmentText: speech,
 //     speech: speech,
 //     displayText: speech,
-//     source: "webhook-echo-sample"
+//     source: "webhook-Universidad-sample"
 //   });
 // }
 // });
-
-restService.post("/Universidad", function(req, res) {
-  var speech = "sasssss";
-  if(speech != ""){  
-    var speechResponse = {
-    google: {
-      expectUserResponse: true,
-      richResponse: {
-        items: [
-          {
-            simpleResponse: {
-              textToSpeech: speech
-            }
-          }
-        ]
-      }
-    }
-  
-  };
-  
-  return res.json({
-    payload: speechResponse,
-    //data: speechResponse,
-    fulfillmentText: speech,
-    speech: speech,
-    displayText: speech,
-    source: "webhook-Universidad-sample"
-  });
-}
-});
 
 
 restService.post("/audio", function(req, res) {
