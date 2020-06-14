@@ -55,7 +55,7 @@ restService.post("/Universidad", function(req, res) {
     req.body.queryResult.parameters.Universidad.location
       ? req.body.queryResult.parameters.Universidad.location
       : "sasssss";
-  if(speech != ""){  
+  // if(speech != ""){  
     var speechResponse = {
     google: {
       expectUserResponse: true,
@@ -80,7 +80,7 @@ restService.post("/Universidad", function(req, res) {
     displayText: speech,
     source: "webhook-echo-sample"
   });
-}
+// }
 });
 
 
