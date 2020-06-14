@@ -54,7 +54,7 @@ restService.post("/Universidad", function(req, res) {
     req.body.queryResult.parameters &&
     req.body.queryResult.parameters.Universidad.location
       ? req.body.queryResult.parameters.Universidad.location
-      : "";
+      : "sasssss";
   if(speech != ""){  
     var speechResponse = {
     google: {
