@@ -48,6 +48,42 @@ restService.post("/echo", function(req, res) {
 }
 });
 
+restService.post("/Universidad", function(req, res) {
+  var speech =
+    req.body.queryResult &&
+    req.body.queryResult.parameters &&
+    req.body.queryResult.parameters.Universidad.location
+      ? req.body.queryResult.parameters.Universidad.location
+      : "";
+  if(speech != ""){  
+    var speechResponse = {
+    google: {
+      expectUserResponse: true,
+      richResponse: {
+        items: [
+          {
+            simpleResponse: {
+              textToSpeech: "respuesta nodejs "+speech
+            }
+          }
+        ]
+      }
+    }
+  
+  };
+  
+  return res.json({
+    payload: speechResponse,
+    //data: speechResponse,
+    fulfillmentText: speech,
+    speech: speech,
+    displayText: speech,
+    source: "webhook-echo-sample"
+  });
+}
+});
+
+
 restService.post("/audio", function(req, res) {
   var speech = "";
   switch (req.body.result.parameters.AudioSample.toLowerCase()) {
