@@ -14,7 +14,7 @@ restService.use(
 restService.use(bodyParser.json());
 
 restService.post("/echo", function(req, res) {
-  var speech = req.body.queryResult.outputContext[0].Universidad.location;
+  var speech = req.body.queryResult.outputContext[0].parameters['Universidad.location'];
   
     var speechResponse = {
     google: {
