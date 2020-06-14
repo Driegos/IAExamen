@@ -18,8 +18,8 @@ restService.use(bodyParser.json());
     var speech =
       req.body.queryResult &&
       req.body.queryResult.parameters &&
-      req.body.queryResult.parameters['Universidad.location']
-        ? req.body.queryResult.parameters['Universidad.location']
+      req.body.queryResult.queryResult.outputContexts[1].parameters['Universidad.location']
+        ? req.body.queryResult.queryResult.outputContexts[1].parameters['Universidad.location']
         : "";
     if(speech != ""){
     var speechResponse = {
