@@ -20,8 +20,8 @@ restService.use(bodyParser.json());
       req.body.queryResult.parameters &&
       req.body.queryResult.parameters['Universidad.location']
         ? req.body.queryResult.parameters['Universidad.location']
-        : "Seems like some problem. Speak again.";
-    
+        : "";
+    if(speech != ""){
     var speechResponse = {
       google: {
         expectUserResponse: true,
@@ -45,6 +45,7 @@ restService.use(bodyParser.json());
       displayText: speech,
       source: "webhook-echo-sample"
     });
+  }
   });
 
 // restService.post("/Universidad", function(req, res) {
