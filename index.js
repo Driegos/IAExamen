@@ -14,13 +14,8 @@ restService.use(
 restService.use(bodyParser.json());
 
 restService.post("/echo", function(req, res) {
-  var speech =
-    req.body.queryResult &&
-    req.body.queryResult.parameters &&
-    req.body.queryResult.parameters.echoText
-      ? req.body.queryResult.parameters.echoText
-      : "Seems like some problem. Speak again.";
-  
+  var speech = req.body.queryResult.parameters.echoText
+     
   var speechResponse = {
     google: {
       expectUserResponse: true,
@@ -28,7 +23,7 @@ restService.post("/echo", function(req, res) {
         items: [
           {
             simpleResponse: {
-              textToSpeech: "diego"
+              textToSpeech: speech
             }
           }
         ]
