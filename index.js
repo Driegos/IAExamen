@@ -13,36 +13,39 @@ restService.use(
 
 restService.use(bodyParser.json());
 
-restService.post("/echo", function(req, res) {
-  var speech = req.body.queryResult.parameters['Universidad.location'];
   
+  restService.post("/echo", function(req, res) {
+    var speech =
+      req.body.queryResult &&
+      req.body.queryResult.parameters &&
+      req.body.queryResult.parameters['Universidad.location']
+        ? req.body.queryResult.parameters['Universidad.location']
+        : "Seems like some problem. Speak again.";
+    
     var speechResponse = {
-    google: {
-      expectUserResponse: true,
-      richResponse: {
-        items: [
-          {
-            simpleResponse: {
-              textToSpeech: speech
+      google: {
+        expectUserResponse: true,
+        richResponse: {
+          items: [
+            {
+              simpleResponse: {
+                textToSpeech: speech
+              }
             }
-          }
-        ]
+          ]
+        }
       }
-    }
-  
-  };
-  
-  return res.json({
-    payload: speechResponse,
-    //data: speechResponse,
-    fulfillmentText: speech,
-    speech: speech,
-    displayText: speech,
-    source: "webhook-echo-sample"
+    };
+    
+    return res.json({
+      payload: speechResponse,
+      //data: speechResponse,
+      fulfillmentText: speech,
+      speech: speech,
+      displayText: speech,
+      source: "webhook-echo-sample"
+    });
   });
-
-});
-
 
 // restService.post("/Universidad", function(req, res) {
 //   var speech = "sasssss";
